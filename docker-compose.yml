@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  db:
+  bible_db:
     image: mysql:5.7
     restart: always
     env_file:
@@ -11,8 +11,7 @@ services:
     expose:
       - '3306'
     volumes:
-      - my-db:/var/lib/mysql
+      - bible-db:/var/lib/mysql
 
-# Names our volume
 volumes:
-  my-db:
+  bible-db:
