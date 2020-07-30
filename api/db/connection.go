@@ -16,7 +16,7 @@ func GetDB() *gorm.DB {
 	host := os.Getenv("MYSQL_HOST")
 	passwd := os.Getenv("MYSQL_PASSWORD")
 
-	uri := fmt.Sprintf("%s:%s@(%s)/%s?charset=utf8&parseTime=True&loc=Local", user, passwd, host, database)
+	uri := fmt.Sprintf("%s:%s@(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, passwd, host, database)
 	db, err := gorm.Open("mysql", uri)
 
 	if err != nil {

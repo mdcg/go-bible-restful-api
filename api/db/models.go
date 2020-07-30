@@ -1,27 +1,27 @@
 package db
 
-import "github.com/jinzhu/gorm"
-
 type Testament struct {
-	gorm.Model
-	Id   int    `gorm:"PRIMARY_KEY"`
-	Name string `gorm:"size:45"`
+	Id   int    `gorm:"PRIMARY_KEY" json:"id"`
+	Name string `gorm:"size:45" json:"name"`
+}
+
+func (Testament) TableName() string {
+	return "testament"
 }
 
 type Books struct {
-	gorm.Model
-	Id        int    `gorm:"PRIMARY_KEY"`
-	Name      string `gorm:"size:45"`
-	Abbrev    string `gorm:"size:5"`
-	Testament string `gorm:"size:5"`
+	Id        int    `gorm:"PRIMARY_KEY" json:"id"`
+	Name      string `gorm:"size:45" json:"name"`
+	Abbrev    string `gorm:"size:5" json:"abbrev"`
+	Testament string `gorm:"size:5" json:"testament"`
 }
 
 type Verses struct {
-	gorm.Model
-	Id        int    `gorm:"PRIMARY_KEY"`
-	Version   string `gorm:"size:10"`
-	Text      string `gorm:"type:text"`
-	Testament int
-	Book      int
-	Verses    int
+	Id        int    `gorm:"PRIMARY_KEY" json:"id"`
+	Version   string `gorm:"size:10" json:"version"`
+	Testament int    `json:"testament"`
+	Book      int    `json:"book"`
+	Chapter   int    `json:"chapter"`
+	Verse     int    `json:"verse"`
+	Text      string `gorm:"type:text" json:"text"`
 }

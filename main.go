@@ -9,12 +9,17 @@ import (
 )
 
 func main() {
-	// conn := db.GetDB()
-	// defer conn.Close()
-
 	r := mux.NewRouter()
 	api := r.PathPrefix("/api/v0").Subrouter()
-	api.HandleFunc("/", routes.SanityTest).Methods(http.MethodGet)
+
+	// Books
+	api.HandleFunc("/books", routes.FindAllBooks).Methods(http.MethodGet)
+
+	// Testaments
+	api.HandleFunc("/testaments", routes.FindAllTestaments).Methods(http.MethodGet)
+
+	// Verses
+	api.HandleFunc("/verses", routes.FindAllVerses).Methods(http.MethodGet)
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
