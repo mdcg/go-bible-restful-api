@@ -14,6 +14,7 @@ func main() {
 
 	// Books
 	api.HandleFunc("/books", routes.FindAllBooks).Methods(http.MethodGet)
+	api.HandleFunc("/books/{abbrev}", routes.FindBookByAbbrev).Methods(http.MethodGet)
 
 	// Testaments
 	api.HandleFunc("/testaments", routes.FindAllTestaments).Methods(http.MethodGet)

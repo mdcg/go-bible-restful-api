@@ -10,7 +10,6 @@ import (
 )
 
 func GetDB() *gorm.DB {
-	// Command to set env variables: set -o allexport; source .env; set +o allexport
 	database := os.Getenv("MYSQL_DATABASE")
 	user := os.Getenv("MYSQL_USER")
 	host := os.Getenv("MYSQL_HOST")
