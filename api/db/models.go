@@ -1,5 +1,11 @@
 package db
 
+type Versions struct {
+	Id     int    `gorm:"PRIMARY_KEY" json:"id"`
+	Name   string `gorm:"size:45" json:"name"`
+	Abbrev string `gorm:"size:5" json:"abbrev"`
+}
+
 type Testament struct {
 	Id   int    `gorm:"PRIMARY_KEY" json:"id"`
 	Name string `gorm:"size:45" json:"name"`
