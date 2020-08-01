@@ -10,5 +10,5 @@ import (
 
 func FindAllTestaments(w http.ResponseWriter, r *http.Request) {
 	testaments := controllers.FindAllTestaments()
-	utils.JSONResponse(w, 200, testaments)
+	utils.JSONResponse(w, http.StatusFound, testaments)
 }

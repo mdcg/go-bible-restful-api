@@ -10,5 +10,5 @@ import (
 
 func FindAllVerses(w http.ResponseWriter, r *http.Request) {
 	verses := controllers.FindAllVerses()
-	utils.JSONResponse(w, 200, verses)
+	utils.JSONResponse(w, http.StatusFound, verses)
 }
