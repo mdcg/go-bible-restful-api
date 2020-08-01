@@ -9,6 +9,6 @@ import (
 )
 
 func FindAllVerses(w http.ResponseWriter, r *http.Request) {
-	books := controllers.FindAllVerses()
-	utils.JSONResponse(w, 200, books)
+	verses := controllers.FindAllVerses()
+	utils.JSONResponse(w, 200, verses)
 }

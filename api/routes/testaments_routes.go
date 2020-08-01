@@ -9,6 +9,6 @@ import (
 )
 
 func FindAllTestaments(w http.ResponseWriter, r *http.Request) {
-	books := controllers.FindAllTestaments()
-	utils.JSONResponse(w, 200, books)
+	testaments := controllers.FindAllTestaments()
+	utils.JSONResponse(w, 200, testaments)
 }
