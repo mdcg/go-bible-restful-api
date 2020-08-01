@@ -16,13 +16,13 @@ docker cp backup/nvi.sql ${MYSQL_CONTAINER_ID}:${MYSQL_DUMP_PATH}/nvi.sql
 docker cp backup/acf.sql ${MYSQL_CONTAINER_ID}:${MYSQL_DUMP_PATH}/acf.sql
 
 echo "Starting backup restore process..."
-docker exec -it ${MYSQL_CONTAINER_ID} bash -c "mysql --max_allowed_packet=1048576000 --user=root --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} < ${MYSQL_DUMP_PATH}/aa.sql"
-docker exec -it ${MYSQL_CONTAINER_ID} bash -c "mysql --max_allowed_packet=1048576000 --user=root --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} < ${MYSQL_DUMP_PATH}/nvi.sql"
-docker exec -it ${MYSQL_CONTAINER_ID} bash -c "mysql --max_allowed_packet=1048576000 --user=root --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} < ${MYSQL_DUMP_PATH}/acf.sql"
+docker exec -it ${MYSQL_CONTAINER_ID} bash -c "mysql --host=localhost --max_allowed_packet=1048576000 --user=root --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} < ${MYSQL_DUMP_PATH}/aa.sql"
+docker exec -it ${MYSQL_CONTAINER_ID} bash -c "mysql --host=localhost --max_allowed_packet=1048576000 --user=root --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} < ${MYSQL_DUMP_PATH}/nvi.sql"
+docker exec -it ${MYSQL_CONTAINER_ID} bash -c "mysql --host=localhost --max_allowed_packet=1048576000 --user=root --password=${MYSQL_PASSWORD} --database=${MYSQL_DATABASE} < ${MYSQL_DUMP_PATH}/acf.sql"
 
 echo "Removing backup files from the container..."
-docker exec -it ${MYSQL_CONTAINER_ID} sh -c "rm ${MYSQL_DUMP_PATH}/aa.sql"
-docker exec -it ${MYSQL_CONTAINER_ID} sh -c "rm ${MYSQL_DUMP_PATH}/nvi.sql"
-docker exec -it ${MYSQL_CONTAINER_ID} sh -c "rm ${MYSQL_DUMP_PATH}/acf.sql"
+docker exec -it ${MYSQL_CONTAINER_ID} bash -c "rm ${MYSQL_DUMP_PATH}/aa.sql"
+docker exec -it ${MYSQL_CONTAINER_ID} bash -c "rm ${MYSQL_DUMP_PATH}/nvi.sql"
+docker exec -it ${MYSQL_CONTAINER_ID} bash -c "rm ${MYSQL_DUMP_PATH}/acf.sql"
 
 echo "Done."
