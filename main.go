@@ -12,12 +12,16 @@ func main() {
 	r := mux.NewRouter()
 	api := r.PathPrefix("/api/v0").Subrouter()
 
-	// Books
-	api.HandleFunc("/books", routes.FindAllBooks).Methods(http.MethodGet)
-	api.HandleFunc("/books/{abbrev}", routes.FindBookByAbbrev).Methods(http.MethodGet)
+	// Versions
+	api.HandleFunc("/versions", routes.FindAllVersions).Methods(http.MethodGet)
+	api.HandleFunc("/versions/{abbrev}", routes.FindVersionByAbbrev).Methods(http.MethodGet)
 
 	// Testaments
 	api.HandleFunc("/testaments", routes.FindAllTestaments).Methods(http.MethodGet)
+
+	// Books
+	api.HandleFunc("/books", routes.FindAllBooks).Methods(http.MethodGet)
+	api.HandleFunc("/books/{abbrev}", routes.FindBookByAbbrev).Methods(http.MethodGet)
 
 	// Verses
 	api.HandleFunc("/verses", routes.FindAllVerses).Methods(http.MethodGet)
