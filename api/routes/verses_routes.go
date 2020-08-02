@@ -9,6 +9,12 @@ import (
 )
 
 func FindAllVerses(w http.ResponseWriter, r *http.Request) {
-	verses := controllers.FindAllVerses()
-	utils.JSONResponse(w, http.StatusFound, verses)
+	verses, was_found := controllers.FindAllVerses()
+	if was_found {
+		response := utils.SuccessResponse(map[string]interface{}{"verses": verses})
+		utils.JSONResponse(w, http.StatusFound, response)
+		return
+	}
+	response := utils.FailResponse("Nenhum verso foi encontrado.")
+	utils.JSONResponse(w, http.StatusFound, response)
 }

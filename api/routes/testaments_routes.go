@@ -9,6 +9,12 @@ import (
 )
 
 func FindAllTestaments(w http.ResponseWriter, r *http.Request) {
-	testaments := controllers.FindAllTestaments()
-	utils.JSONResponse(w, http.StatusFound, testaments)
+	testaments, was_found := controllers.FindAllTestaments()
+	if was_found {
+		response := utils.SuccessResponse(map[string]interface{}{"testaments": testaments})
+		utils.JSONResponse(w, http.StatusFound, response)
+		return
+	}
+	response := utils.FailResponse("Nenhum testamento foi encontrado.")
+	utils.JSONResponse(w, http.StatusFound, response)
 }
