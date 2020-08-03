@@ -18,6 +18,7 @@ func main() {
 
 	// Testaments
 	api.HandleFunc("/testaments", routes.FindAllTestaments).Methods(http.MethodGet)
+	api.HandleFunc("/testaments/{part}", routes.FindTestamentsByPart).Methods(http.MethodGet)
 
 	// Books
 	api.HandleFunc("/books", routes.FindAllBooks).Methods(http.MethodGet)
