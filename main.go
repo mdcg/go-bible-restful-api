@@ -26,7 +26,7 @@ func main() {
 	api.HandleFunc("/testaments/{part}/books", routes.FindBooksByTestament).Methods(http.MethodGet)
 
 	// Verses
-	api.HandleFunc("/verses", routes.FindAllVerses).Methods(http.MethodGet)
+	api.HandleFunc("/versions/{version_abbrev}/books/{book_abbrev}/verses", routes.FindVersesByVersionAndBook).Methods(http.MethodGet)
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
