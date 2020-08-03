@@ -9,10 +9,10 @@ func FindAllVerses() (*[]db.Verses, bool) {
 	defer conn.Close()
 
 	var verses []db.Verses
-	was_found := true
+	not_found := false
 
 	if conn.Model(&db.Verses{}).Limit(100).Find(&verses).RecordNotFound() {
-		was_found = false
+		not_found = true
 	}
-	return &verses, was_found
+	return &verses, not_found
 }

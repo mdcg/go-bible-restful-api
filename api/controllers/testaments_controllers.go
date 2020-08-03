@@ -9,12 +9,12 @@ func FindAllTestaments() (*[]db.Testament, bool) {
 	defer conn.Close()
 
 	var testaments []db.Testament
-	was_found := true
+	not_found := false
 
 	if conn.Model(&db.Testament{}).Find(&testaments).RecordNotFound() {
-		was_found = false
+		not_found = true
 	}
-	return &testaments, was_found
+	return &testaments, not_found
 }
 
 func FindTestamentByPart(part string) (*db.Testament, bool) {
@@ -22,10 +22,10 @@ func FindTestamentByPart(part string) (*db.Testament, bool) {
 	defer conn.Close()
 
 	var testament db.Testament
-	was_found := true
+	not_found := false
 
 	if conn.Model(&db.Testament{}).Where("id = ?", part).Find(&testament).RecordNotFound() {
-		was_found = false
+		not_found = true
 	}
-	return &testament, was_found
+	return &testament, not_found
 }

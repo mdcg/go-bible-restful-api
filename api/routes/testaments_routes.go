@@ -10,24 +10,24 @@ import (
 )
 
 func FindAllTestaments(w http.ResponseWriter, r *http.Request) {
-	testaments, was_found := controllers.FindAllTestaments()
-	if was_found {
-		response := utils.SuccessResponse(map[string]interface{}{"testaments": testaments})
+	testaments, not_found := controllers.FindAllTestaments()
+	if not_found {
+		response := utils.FailResponse("Nenhum testamento foi encontrado.")
 		utils.JSONResponse(w, http.StatusFound, response)
 		return
 	}
-	response := utils.FailResponse("Nenhum testamento foi encontrado.")
+	response := utils.SuccessResponse(map[string]interface{}{"testaments": testaments})
 	utils.JSONResponse(w, http.StatusFound, response)
 }
 
 func FindTestamentsByPart(w http.ResponseWriter, r *http.Request) {
 	part := mux.Vars(r)["part"]
-	testament, was_found := controllers.FindTestamentByPart(part)
-	if was_found {
-		response := utils.SuccessResponse(map[string]interface{}{"testament": testament})
+	testament, not_found := controllers.FindTestamentByPart(part)
+	if not_found {
+		response := utils.FailResponse("Nenhum testamento foi encontrado.")
 		utils.JSONResponse(w, http.StatusFound, response)
 		return
 	}
-	response := utils.FailResponse("Nenhum testamento foi encontrado.")
+	response := utils.SuccessResponse(map[string]interface{}{"testament": testament})
 	utils.JSONResponse(w, http.StatusFound, response)
 }

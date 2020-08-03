@@ -9,25 +9,25 @@ func FindAllBooks() (*[]db.Books, bool) {
 	defer conn.Close()
 
 	var books []db.Books
-	was_found := true
+	not_found := false
 
 	if conn.Model(&db.Books{}).Find(&books).RecordNotFound() {
-		was_found = false
+		not_found = true
 	}
-	return &books, was_found
+	return &books, not_found
 }
 
-func FindBooksByTestament(part string) (*[]db.Books, bool) {
+func FindBooksByTestament(part int) (*[]db.Books, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
 
 	var books []db.Books
-	was_found := true
+	not_found := false
 
 	if conn.Model(&db.Books{}).Where("testament = ?", part).Find(&books).RecordNotFound() {
-		was_found = false
+		not_found = true
 	}
-	return &books, was_found
+	return &books, not_found
 }
 
 func FindBookByAbbrev(abbr string) (*db.Books, bool) {
@@ -35,10 +35,10 @@ func FindBookByAbbrev(abbr string) (*db.Books, bool) {
 	defer conn.Close()
 
 	var book db.Books
-	was_found := true
+	not_found := false
 
 	if conn.Model(&db.Books{}).Where("abbrev = ?", abbr).First(&book).RecordNotFound() {
-		was_found = false
+		not_found = true
 	}
-	return &book, was_found
+	return &book, not_found
 }

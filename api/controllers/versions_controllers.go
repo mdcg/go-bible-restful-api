@@ -9,12 +9,12 @@ func FindAllVersions() (*[]db.Versions, bool) {
 	defer conn.Close()
 
 	var versions []db.Versions
-	was_found := true
+	not_found := false
 
 	if conn.Model(&db.Versions{}).Find(&versions).RecordNotFound() {
-		was_found = false
+		not_found = true
 	}
-	return &versions, was_found
+	return &versions, not_found
 }
 
 func FindVersionByAbbrev(abbr string) (*db.Versions, bool) {
@@ -22,10 +22,10 @@ func FindVersionByAbbrev(abbr string) (*db.Versions, bool) {
 	defer conn.Close()
 
 	var version db.Versions
-	was_found := true
+	not_found := false
 
 	if conn.Model(&db.Versions{}).Where("abbrev = ?", abbr).First(&version).RecordNotFound() {
-		was_found = false
+		not_found = true
 	}
-	return &version, was_found
+	return &version, not_found
 }
