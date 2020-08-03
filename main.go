@@ -27,6 +27,9 @@ func main() {
 
 	// Verses
 	api.HandleFunc("/versions/{version_abbrev}/books/{book_abbrev}/verses", routes.FindVersesByVersionAndBook).Methods(http.MethodGet)
+	api.HandleFunc("/versions/{version_abbrev}/books/{book_abbrev}/chapter/{chapter}/verses", routes.FindVersesByChapterVersionAndBook).Methods(http.MethodGet)
+	api.HandleFunc("/versions/{version_abbrev}/books/{book_abbrev}/chapter/{chapter}/verses/{verse}", routes.FindVerseByChapterVersionAndBook).Methods(http.MethodGet)
+	api.HandleFunc("/versions/{version_abbrev}/search", routes.SearchByVerseText).Methods(http.MethodPost)
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
