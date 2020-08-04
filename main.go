@@ -3,12 +3,25 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/mdcg/go-bible-restful-api/api/middleware"
 	"github.com/mdcg/go-bible-restful-api/api/routes"
 )
 
 func main() {
+	fileName := "webrequests.log"
+	logFile, err := os.OpenFile(fileName, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
+
+	if err != nil {
+		panic(err)
+	}
+	defer logFile.Close()
+
+	// Direct all log messages to webrequests.log
+	log.SetOutput(logFile)
+
 	r := mux.NewRouter()
 	api := r.PathPrefix("/api/v0").Subrouter()
 
@@ -31,5 +44,5 @@ func main() {
 	api.HandleFunc("/versions/{version_abbrev}/books/{book_abbrev}/chapter/{chapter}/verses/{verse}", routes.FindVerseByChapterVersionAndBook).Methods(http.MethodGet)
 	api.HandleFunc("/versions/{version_abbrev}/search", routes.SearchByVerseText).Methods(http.MethodPost)
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":8080", middleware.RequestLogger(r)))
 }
