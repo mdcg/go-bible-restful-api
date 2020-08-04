@@ -4,6 +4,7 @@ import (
 	"github.com/mdcg/go-bible-restful-api/api/db"
 )
 
+// Search and return all the books of the bible.
 func FindAllBooks() (*[]db.Books, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
@@ -17,6 +18,7 @@ func FindAllBooks() (*[]db.Books, bool) {
 	return &books, not_found
 }
 
+// Searches and returns the books of the bible of a given testament.
 func FindBooksByTestament(part int) (*[]db.Books, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
@@ -30,6 +32,7 @@ func FindBooksByTestament(part int) (*[]db.Books, bool) {
 	return &books, not_found
 }
 
+// Searches and returns the data for a particular book of the Bible through its abbreviation.
 func FindBookByAbbrev(abbr string) (*db.Books, bool) {
 	conn := db.GetDB()
 	defer conn.Close()

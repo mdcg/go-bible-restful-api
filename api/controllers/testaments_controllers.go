@@ -4,6 +4,7 @@ import (
 	"github.com/mdcg/go-bible-restful-api/api/db"
 )
 
+// Search and return all testaments from the bible.
 func FindAllTestaments() (*[]db.Testament, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
@@ -17,6 +18,7 @@ func FindAllTestaments() (*[]db.Testament, bool) {
 	return &testaments, not_found
 }
 
+// Search and return the data for a specific bible testament from your part.
 func FindTestamentByPart(part string) (*db.Testament, bool) {
 	conn := db.GetDB()
 	defer conn.Close()

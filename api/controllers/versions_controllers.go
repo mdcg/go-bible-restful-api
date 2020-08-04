@@ -4,6 +4,7 @@ import (
 	"github.com/mdcg/go-bible-restful-api/api/db"
 )
 
+// Search and return all available translation versions.
 func FindAllVersions() (*[]db.Versions, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
@@ -17,6 +18,7 @@ func FindAllVersions() (*[]db.Versions, bool) {
 	return &versions, not_found
 }
 
+// Search and return data for a translation version from its abbreviation.
 func FindVersionByAbbrev(abbr string) (*db.Versions, bool) {
 	conn := db.GetDB()
 	defer conn.Close()

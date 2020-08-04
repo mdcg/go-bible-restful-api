@@ -6,6 +6,7 @@ import (
 	"github.com/mdcg/go-bible-restful-api/api/db"
 )
 
+// Searches and returns all verses, which are contained in a given book of the Bible, from a specific translation version.
 func FindVersesByVersionAndBook(version string, book_id int) (*[]db.Verses, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
@@ -19,6 +20,7 @@ func FindVersesByVersionAndBook(version string, book_id int) (*[]db.Verses, bool
 	return &verses, not_found
 }
 
+// Searches and returns all verses, from a chapter in a given book of the Bible, from a specific translation version.
 func FindVersesByChapterVersionAndBook(chapter int, version string, book_id int) (*[]db.Verses, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
@@ -32,6 +34,7 @@ func FindVersesByChapterVersionAndBook(chapter int, version string, book_id int)
 	return &verses, not_found
 }
 
+// Searches and returns the data for a verse, a chapter in a given book of the Bible, a specific translation version.
 func FindVerseByChapterVersionAndBook(verse int, chapter int, version string, book_id int) (*[]db.Verses, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
@@ -45,6 +48,7 @@ func FindVerseByChapterVersionAndBook(verse int, chapter int, version string, bo
 	return &verses, not_found
 }
 
+// Searches and returns all verses that have a certain word, from a specific translation version.
 func SearchByVerseText(version string, word string) (*[]db.Verses, bool) {
 	conn := db.GetDB()
 	defer conn.Close()
