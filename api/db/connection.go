@@ -9,6 +9,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
+// Returns an instance to connect to the database.
 func GetDB() *gorm.DB {
 	database := os.Getenv("MYSQL_DATABASE")
 	user := os.Getenv("MYSQL_USER")

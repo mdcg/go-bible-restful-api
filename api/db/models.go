@@ -11,6 +11,8 @@ type Testament struct {
 	Name string `gorm:"size:45" json:"name"`
 }
 
+// By default, when querying with the gorm library, tables are named plural.
+// Here we are telling the library that this table has a singular name.
 func (Testament) TableName() string {
 	return "testament"
 }
