@@ -11,6 +11,7 @@ import (
 	"github.com/mdcg/go-bible-restful-api/api/controllers"
 )
 
+// Route to search the verses, of a certain book, of a certain version of the Bible translation.
 func FindVersesByVersionAndBook(w http.ResponseWriter, r *http.Request) {
 	version_abbrev := mux.Vars(r)["version_abbrev"]
 	book_abbrev := mux.Vars(r)["book_abbrev"]
@@ -39,6 +40,7 @@ func FindVersesByVersionAndBook(w http.ResponseWriter, r *http.Request) {
 	utils.JSONResponse(w, http.StatusFound, response)
 }
 
+// Route to search the verses, of a chapter, of a certain book, of a certain version of the translation of the bible.
 func FindVersesByChapterVersionAndBook(w http.ResponseWriter, r *http.Request) {
 	version_abbrev := mux.Vars(r)["version_abbrev"]
 	book_abbrev := mux.Vars(r)["book_abbrev"]
@@ -75,6 +77,7 @@ func FindVersesByChapterVersionAndBook(w http.ResponseWriter, r *http.Request) {
 	utils.JSONResponse(w, http.StatusFound, response)
 }
 
+// Route to search the data of a verse, of a certain book, of a certain version of the translation of the bible.
 func FindVerseByChapterVersionAndBook(w http.ResponseWriter, r *http.Request) {
 	version_abbrev := mux.Vars(r)["version_abbrev"]
 	book_abbrev := mux.Vars(r)["book_abbrev"]
@@ -119,10 +122,12 @@ func FindVerseByChapterVersionAndBook(w http.ResponseWriter, r *http.Request) {
 	utils.JSONResponse(w, http.StatusFound, response)
 }
 
+// To handle POST requests, we need to have a structure to work with the data received.
 type searchInfo struct {
 	Phrase string
 }
 
+// Route to search the verses that have a certain word/phrase.
 func SearchByVerseText(w http.ResponseWriter, r *http.Request) {
 	version_abbrev := mux.Vars(r)["version_abbrev"]
 	var searchObj searchInfo

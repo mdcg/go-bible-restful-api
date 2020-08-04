@@ -9,6 +9,7 @@ import (
 	"github.com/mdcg/go-bible-restful-api/api/controllers"
 )
 
+// Route to consult all translation versions available in the API.
 func FindAllVersions(w http.ResponseWriter, r *http.Request) {
 	versions, not_found := controllers.FindAllVersions()
 	if not_found {
@@ -20,6 +21,7 @@ func FindAllVersions(w http.ResponseWriter, r *http.Request) {
 	utils.JSONResponse(w, http.StatusFound, response)
 }
 
+// Route to consult the data of a translation version from an abbreviation.
 func FindVersionByAbbrev(w http.ResponseWriter, r *http.Request) {
 	abbrev := mux.Vars(r)["abbrev"]
 	version, not_found := controllers.FindVersionByAbbrev(abbrev)
